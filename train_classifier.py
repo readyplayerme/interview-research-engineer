@@ -46,15 +46,14 @@ def run_training():
     optimizer = optim.SGD(net.fc1.parameters(), lr=0.1)
 
     # Training loop
-    # Please assign device to tensors, 
+    # Please assign device to tensors,
     # Log your loss function with wandb
     for epoch in range(5):  # 5 epochs
         for i, data in enumerate(train_loader, 0):
             inputs, labels = data
             optimizer.zero_grad()
             outputs = net(inputs)
-            outputs = outputs.detach()
-            loss = criterion(outputs, labels)
+            loss = criterion(outputs.data, labels)
             loss.backward()
             if i % 10 == 0:
                 print('Epoch: %d, Iteration: %d, Loss: %f' %
@@ -77,5 +76,4 @@ def run_training():
     torch.save(net.state_dict(), './mnist_net.pth')
 
 
-if __name__ == "__main__":
-    run_training()
+run_training()
