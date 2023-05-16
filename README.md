@@ -1,5 +1,8 @@
 # Vanilla VAE with classifier guidance
 
+## Requirements
+This code should run well on any hardware.
+
 ## **Task description**
 
 The task consists of 2 parts:
